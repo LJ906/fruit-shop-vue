@@ -1,0 +1,59 @@
+<div class="home-wrap">
+  <!--头部组件-->
+  <top-component pageTitle = '我的水果店' :showLeft='false'></top-component>
+  <!--轮播图-->
+  <mt-swipe :auto="4000">
+    <mt-swipe-item v-for= 'item in bannerPic'  :key = "item.id" >
+      <router-link :to="item.path" class = "banner-link">
+        <img class='banner-pic' :src="item.imgUrl" alt="">
+      </router-link>
+    </mt-swipe-item>
+  </mt-swipe>
+  <!--导航-->
+  <nav class="nav-wrapper">
+    <ul class="nav-list">
+      <li v-for="(item, index) in navList " :class="{'hover': index == curNavIndex}" :key= item.id @click ="curNavIndex = index">{{item}}</li>
+    </ul>
+  </nav>
+  <!--分类表-->
+  <div class="cate-wrapper">
+    <ul class="cate-list">
+      <li class="cate-item" v-for='(item, index) in cateList' :key= "item.cateId" @click="handleShowCateList(item)">
+        <img :src="item.catePic" :alt="item.cateName" >
+      </li>
+    </ul>
+  </div>
+
+  <h4 class="recom-title">推荐商品</h4>
+  <!--商品推荐-->
+  <div class="recom-wrapper">
+    <ul class="recom-list">
+      <li v-for="(item, index) in recommendList" :key="item.proId">
+        <div class="pro-img">
+          <img :src="item.proPic">
+        </div>
+        <div class="pro-name">
+          {{item.proName}}
+        </div>
+        <div class="pro-price clearfix">
+          <span class="old-price"><del>¥{{item.oldPrice}}</del></span>
+          <span class="now-price">¥{{item.newPrice}}</span>
+          <span class="icon-cart">
+            <img src="../../assets/images/icon-cart.jpg" alt="">
+          </span>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+  <div class="box">
+    <i class="iconfont icon-wxbsousuotuiguang"></i>
+  </div>
+  <!--标题 苹果-->
+  <div>
+    <img src="../../assets/images/banner_2.jpg" alt="">
+  </div>
+
+  <!--底部tabBar-->
+<tabBar></tabBar>
+</div>
